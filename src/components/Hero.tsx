@@ -1,141 +1,181 @@
-import { motion } from 'framer-motion'
-import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react'
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
 
-const stats = [
-  { value: '5+', label: 'Projects Built' },
-  { value: '3', label: 'Freelance Sites' },
-  { value: '10+', label: 'Technologies' },
-]
+const name = "Alka Kumari";
 
 export default function Hero() {
+  const lettersRef = useRef<(HTMLSpanElement | null)[]>([]);
+  const nameRef = useRef<HTMLHeadingElement | null>(null);
+
+  useEffect(() => {
+    gsap.set(lettersRef.current, {
+      transformPerspective: 1200,
+      transformOrigin: "50% 100%",
+    });
+
+    const tl = gsap.timeline();
+
+    tl.fromTo(
+      lettersRef.current,
+      {
+        opacity: 0,
+        y: 160,
+        rotateX: -90,
+        scale: 0.5,
+        filter: "blur(18px)",
+      },
+      {
+        opacity: 1,
+        y: -10,
+        rotateX: 12,
+        scale: 1.08,
+        filter: "blur(0px)",
+        stagger: 0.06,
+        duration: 0.8,
+        ease: "power4.out",
+      },
+    )
+      .to(
+        lettersRef.current,
+        {
+          y: 0,
+          rotateX: 0,
+          scale: 1,
+          duration: 0.35,
+          stagger: 0.03,
+          ease: "back.out(2)",
+        },
+        "-=0.45",
+      )
+      .fromTo(
+        ".shine",
+        {
+          x: "-120%",
+        },
+        {
+          x: "220%",
+          duration: 1.2,
+          ease: "power2.inOut",
+        },
+        "-=0.15",
+      );
+  }, []);
+
   return (
-    <section
-      id="home"
-      className="section-container flex min-h-screen flex-col justify-center pt-24 pb-16 lg:pt-28"
-    >
-      <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
-        <motion.div
-          initial={{ opacity: 0, y: 28 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-          className="rounded-2xl border border-border bg-surface/85 p-6 shadow-lg backdrop-blur-md sm:p-8"
-        >
-          <p className="section-label mb-4">Web Developer</p>
-          <h1 className="text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl lg:text-[3.25rem]">
-            Hi, I&apos;m{' '}
-            <span className="text-accent">Alka Kumari</span>
+    <>
+      <style>{`
+        .hero{
+          min-height:100vh;
+          display:flex;
+          justify-content:center;
+          align-items:center;
+          background:#000;
+          overflow:hidden;
+          padding:0 2rem;
+          perspective:1400px;
+        }
+
+        .wrapper{
+          position:relative;
+          display:inline-block;
+        }
+
+        .name{
+          position:relative;
+          display:flex;
+          flex-wrap:wrap;
+          justify-content:center;
+          align-items:center;
+
+          font-size:clamp(5rem,13vw,11rem);
+          font-weight:900;
+          line-height:.9;
+          letter-spacing:-0.07em;
+
+          color:white;
+
+          user-select:none;
+
+          overflow:hidden;
+        }
+
+        .letter{
+          display:inline-block;
+          position:relative;
+          cursor:default;
+          transform-origin:center bottom;
+          will-change:transform;
+          transition:
+            transform .3s ease,
+            color .3s ease,
+            text-shadow .3s ease;
+        }
+
+        .letter:hover{
+          transform:translateY(-18px) scale(1.12);
+          color:#00BCD4;
+          text-shadow:
+            0 0 20px rgba(0,188,212,.5),
+            0 0 40px rgba(0,188,212,.35);
+        }
+
+        .space{
+          width:1.4rem;
+        }
+
+        .shine{
+          position:absolute;
+          top:-20%;
+          left:-35%;
+          width:18%;
+          height:150%;
+
+          background:linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.45),
+            transparent
+          );
+
+          transform:skewX(-25deg);
+          pointer-events:none;
+        }
+
+        @media(max-width:768px){
+
+          .hero{
+            padding:0 1rem;
+          }
+
+          .name{
+            font-size:clamp(3.2rem,15vw,6rem);
+          }
+
+          .space{
+            width:.8rem;
+          }
+        }
+      `}</style>
+
+      <section className="hero" id="home">
+        <div className="wrapper">
+          <div className="shine"></div>
+
+          <h1 ref={nameRef} className="name">
+            {name.split("").map((char, index) => (
+              <span
+                key={index}
+                ref={(el) => {
+                  lettersRef.current[index] = el;
+                }}
+                className={char === " " ? "space" : "letter"}
+              >
+                {char === " " ? "\u00A0" : char}
+              </span>
+            ))}
           </h1>
-          <p className="mt-5 max-w-xl text-lg leading-relaxed text-white/85 sm:text-xl">
-            I build modern, user-friendly websites — from clean UI design in
-            Google Stitch to production-ready code with React, AI-assisted
-            tools, and thoughtful engineering.
-          </p>
-          <p className="mt-3 max-w-lg text-base text-white/70">
-            Turning ideas into polished digital experiences through design,
-            development, and attention to detail.
-          </p>
-
-          <div className="mt-8 flex flex-wrap items-center gap-4">
-            <a
-              href="#projects"
-              className="inline-flex items-center rounded-full bg-accent px-6 py-3 text-sm font-medium text-white shadow-md transition-all duration-300 hover:bg-accent-hover hover:-translate-y-0.5"
-            >
-              View My Work
-            </a>
-            <a
-              href="#contact"
-              className="inline-flex items-center rounded-full border border-white/20 bg-surface-raised/80 px-6 py-3 text-sm font-medium text-white backdrop-blur-sm transition-all duration-300 hover:border-accent hover:text-accent"
-            >
-              Get in Touch
-            </a>
-          </div>
-
-          <div className="mt-8 flex items-center gap-4">
-            <a
-              href="https://github.com/alka204"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex h-10 w-10 items-center justify-center rounded-lg border border-border text-muted transition-all duration-300 hover:border-accent hover:text-accent hover:-translate-y-0.5"
-              aria-label="GitHub profile"
-            >
-              <Github size={18} />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/alka-kumari-7a0133267/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex h-10 w-10 items-center justify-center rounded-lg border border-border text-muted transition-all duration-300 hover:border-accent hover:text-accent hover:-translate-y-0.5"
-              aria-label="LinkedIn profile"
-            >
-              <Linkedin size={18} />
-            </a>
-            <a
-              href="mailto:alka.kumari3289@gmail.com"
-              className="flex h-10 w-10 items-center justify-center rounded-lg border border-border text-muted transition-all duration-300 hover:border-accent hover:text-accent hover:-translate-y-0.5"
-              aria-label="Send email"
-            >
-              <Mail size={18} />
-            </a>
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.96 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.7, delay: 0.15, ease: 'easeOut' }}
-          className="relative mx-auto w-full max-w-md lg:max-w-none"
-        >
-          <div className="glass-card relative overflow-hidden p-6 sm:p-8">
-            <div className="absolute top-0 right-0 h-24 w-24 rounded-bl-[4rem] border-b border-l border-border bg-surface-raised/50" />
-            <p className="font-mono text-xs uppercase tracking-widest text-accent">
-              Currently
-            </p>
-            <p className="mt-3 text-2xl font-semibold text-white">
-              Building &amp; Designing
-            </p>
-            <p className="mt-2 text-sm leading-relaxed text-muted">
-              Freelance websites, React applications, and CMS-powered marketing
-              sites — with a focus on responsive layouts and clean structure.
-            </p>
-
-            <div className="mt-8 grid grid-cols-3 gap-3 border-t border-border pt-6">
-              {stats.map((stat) => (
-                <div key={stat.label} className="text-center sm:text-left">
-                  <p className="text-xl font-semibold text-white sm:text-2xl">
-                    {stat.value}
-                  </p>
-                  <p className="mt-1 text-xs text-subtle">{stat.label}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-6 flex flex-wrap gap-2">
-              {['React', 'Tailwind', 'Sanity', 'Cursor', 'Node.js'].map(
-                (tag) => (
-                  <span
-                    key={tag}
-                    className="rounded-md border border-border bg-surface-raised px-2.5 py-1 font-mono text-xs text-muted"
-                  >
-                    {tag}
-                  </span>
-                ),
-              )}
-            </div>
-          </div>
-        </motion.div>
-      </div>
-
-      <motion.a
-        href="#skills"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 0.5 }}
-        className="mt-16 flex flex-col items-center gap-2 text-subtle transition-colors hover:text-accent"
-        aria-label="Scroll to skills"
-      >
-        <span className="text-xs uppercase tracking-widest">Explore</span>
-        <ArrowDown size={18} className="animate-bounce" />
-      </motion.a>
-    </section>
-  )
+        </div>
+      </section>
+    </>
+  );
 }
