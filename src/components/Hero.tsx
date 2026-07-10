@@ -5,48 +5,57 @@ const name = "Alka Kumari";
 
 export default function Hero() {
   const lettersRef = useRef<(HTMLSpanElement | null)[]>([]);
-  const nameRef = useRef<HTMLHeadingElement | null>(null);
+  const subtitleRef = useRef<HTMLParagraphElement | null>(null);
 
   useEffect(() => {
     gsap.set(lettersRef.current, {
-      transformPerspective: 1200,
-      transformOrigin: "50% 100%",
+      yPercent: 120,
+      opacity: 0,
+    });
+
+    gsap.set(subtitleRef.current, {
+      opacity: 0,
+      y: 30,
     });
 
     const tl = gsap.timeline();
 
-    tl.fromTo(
-      lettersRef.current,
-      {
-        opacity: 0,
-        y: 160,
-        rotateX: -90,
-        scale: 0.5,
-        filter: "blur(18px)",
+    // Letter-by-letter entrance
+    tl.to(lettersRef.current, {
+      yPercent: 0,
+      opacity: 1,
+      duration: 0.8,
+      ease: "power4.out",
+      stagger: {
+        each: 0.08,
+        from: "start",
       },
-      {
-        opacity: 1,
-        y: -10,
-        rotateX: 12,
-        scale: 1.08,
-        filter: "blur(0px)",
-        stagger: 0.06,
-        duration: 0.8,
-        ease: "power4.out",
-      },
-    )
+    })
+
+      // Small bounce
+      .to(
+        lettersRef.current,
+        {
+          y: -8,
+          duration: 0.18,
+          ease: "power2.out",
+          stagger: 0.03,
+        },
+        "-=0.35",
+      )
+
       .to(
         lettersRef.current,
         {
           y: 0,
-          rotateX: 0,
-          scale: 1,
-          duration: 0.35,
-          stagger: 0.03,
+          duration: 0.25,
           ease: "back.out(2)",
+          stagger: 0.03,
         },
-        "-=0.45",
+        "<",
       )
+
+      // Shine animation
       .fromTo(
         ".shine",
         {
@@ -54,13 +63,61 @@ export default function Hero() {
         },
         {
           x: "220%",
-          duration: 1.2,
+          duration: 1.3,
           ease: "power2.inOut",
         },
-        "-=0.15",
-      );
-  }, []);
+        "-=0.3",
+      )
 
+      // Subtitle
+      .to(
+        subtitleRef.current,
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          ease: "power3.out",
+        },
+        "-=0.5",
+      )
+
+      // Start idle animation after entrance
+      .call(() => {
+        lettersRef.current.forEach((letter, i) => {
+          if (!letter) return;
+
+          // Floating up/down
+          gsap.to(letter, {
+            y: gsap.utils.random(-8, 8),
+            duration: gsap.utils.random(1.8, 3),
+            ease: "sine.inOut",
+            repeat: -1,
+            yoyo: true,
+            delay: i * 0.12,
+          });
+
+          // Slight rotation
+          gsap.to(letter, {
+            rotate: gsap.utils.random(-4, 4),
+            duration: gsap.utils.random(2.5, 4),
+            ease: "sine.inOut",
+            repeat: -1,
+            yoyo: true,
+            delay: i * 0.1,
+          });
+
+          // Tiny scale pulse
+          gsap.to(letter, {
+            scale: gsap.utils.random(0.97, 1.03),
+            duration: gsap.utils.random(2, 3.5),
+            ease: "sine.inOut",
+            repeat: -1,
+            yoyo: true,
+            delay: i * 0.15,
+          });
+        });
+      });
+  }, []);
   return (
     <>
       <style>{`
@@ -72,55 +129,63 @@ export default function Hero() {
           background:#000;
           overflow:hidden;
           padding:0 2rem;
-          perspective:1400px;
         }
 
         .wrapper{
           position:relative;
-          display:inline-block;
+          display:flex;
+          flex-direction:column;
+          align-items:center;
         }
 
         .name{
-          position:relative;
           display:flex;
-          flex-wrap:wrap;
           justify-content:center;
           align-items:center;
-
+          white-space:nowrap;
           font-size:clamp(5rem,13vw,11rem);
           font-weight:900;
-          line-height:.9;
-          letter-spacing:-0.07em;
+          line-height:1;
+          letter-spacing:-0.05em;
+          color:#fff;
+        }
 
-          color:white;
-
-          user-select:none;
-
+        /* IMPORTANT */
+        .letter-wrapper{
+          display:inline-block;
           overflow:hidden;
         }
 
-        .letter{
-          display:inline-block;
-          position:relative;
-          cursor:default;
-          transform-origin:center bottom;
-          will-change:transform;
-          transition:
-            transform .3s ease,
-            color .3s ease,
-            text-shadow .3s ease;
-        }
+      .letter{
+  display:inline-block;
+  will-change:transform;
+  cursor:default;
 
-        .letter:hover{
-          transform:translateY(-18px) scale(1.12);
-          color:#00BCD4;
-          text-shadow:
-            0 0 20px rgba(0,188,212,.5),
-            0 0 40px rgba(0,188,212,.35);
-        }
+  transition:
+      color .25s ease,
+      text-shadow .25s ease;
+}
+
+.letter:hover{
+  color:#00BCD4;
+
+  text-shadow:
+      0 0 20px rgba(0,188,212,.45),
+      0 0 35px rgba(0,188,212,.25);
+}
 
         .space{
-          width:1.4rem;
+          display:inline-block;
+          width:.35em;
+        }
+
+        .subtitle{
+          margin-top:28px;
+          color:#9ca3af;
+          font-size:1.1rem;
+          letter-spacing:.05em;
+          text-align:center;
+          opacity:0;
         }
 
         .shine{
@@ -129,14 +194,12 @@ export default function Hero() {
           left:-35%;
           width:18%;
           height:150%;
-
           background:linear-gradient(
             90deg,
             transparent,
             rgba(255,255,255,.45),
             transparent
           );
-
           transform:skewX(-25deg);
           pointer-events:none;
         }
@@ -148,32 +211,49 @@ export default function Hero() {
           }
 
           .name{
-            font-size:clamp(3.2rem,15vw,6rem);
+            font-size:clamp(3rem,15vw,6rem);
+          }
+
+          .subtitle{
+            font-size:1rem;
+            margin-top:18px;
+            padding:0 1rem;
           }
 
           .space{
-            width:.8rem;
+            width:.28em;
           }
         }
       `}</style>
 
       <section className="hero" id="home">
         <div className="wrapper">
-          <div className="shine"></div>
+          <div className="shine" />
 
-          <h1 ref={nameRef} className="name">
-            {name.split("").map((char, index) => (
-              <span
-                key={index}
-                ref={(el) => {
-                  lettersRef.current[index] = el;
-                }}
-                className={char === " " ? "space" : "letter"}
-              >
-                {char === " " ? "\u00A0" : char}
-              </span>
-            ))}
+          <h1 className="name">
+            {name.split("").map((char, index) =>
+              char === " " ? (
+                <span key={index} className="space">
+                  &nbsp;
+                </span>
+              ) : (
+                <span key={index} className="letter-wrapper">
+                  <span
+                    ref={(el) => {
+                      lettersRef.current[index] = el;
+                    }}
+                    className="letter"
+                  >
+                    {char}
+                  </span>
+                </span>
+              ),
+            )}
           </h1>
+
+          <p ref={subtitleRef} className="subtitle">
+            Everything I touch is left improved.
+          </p>
         </div>
       </section>
     </>
