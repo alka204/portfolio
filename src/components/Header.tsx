@@ -49,7 +49,7 @@ export default function Header() {
           : "bg-transparent"
       }`}
     >
-      <div className="section-container flex h-16 items-center justify-between sm:h-[4.5rem]">
+      <div className="section-container flex h-16 items-center justify-between sm:h-18">
         <a
           href="#home"
           className="text-lg font-semibold tracking-wide text-white transition-colors hover:text-accent"

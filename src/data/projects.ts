@@ -11,15 +11,6 @@ export interface Project {
 
 export const personalProjects: Project[] = [
   {
-    title: "Production Checkout System",
-    description:
-      "An interactive backend engineering showcase demonstrating a production-grade ecommerce checkout architecture with API Gateway, payment processing, PostgreSQL, JWT authentication, event-driven services, database transactions, and cloud deployment concepts.",
-    tags: ["Node.js", "PostgreSQL", "Redis", "Docker", "AWS", "Stripe"],
-    link: "#checkout",
-    linkLabel: "Explore Architecture",
-    type: "live",
-  },
-  {
     title: "PulseOS",
     description:
       "A full-stack health monitoring platform with a React login dashboard on Vercel and a Node.js API backend on Render for user authentication and data management.",

@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import {
-  ArrowRight,
-  Play,
-  Github,
+  // ArrowRight,
+  // Play,
+  // Github,
   ShieldCheck,
   Database,
   CreditCard,
@@ -33,7 +33,7 @@ const CheckoutHero = () => {
     <section className="relative overflow-hidden border-t border-border bg-surface py-28">
       {/* Background Blur */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute left-1/2 top-0 h-[450px] w-[450px] -translate-x-1/2 rounded-full bg-accent/10 blur-[140px]" />
+        <div className="absolute left-1/2 top-0 h-112.5 w-112.5 -translate-x-1/2 rounded-full bg-accent/10 blur-[140px]" />
       </div>
 
       <div className="mx-auto max-w-7xl px-6">
@@ -91,18 +91,15 @@ const CheckoutHero = () => {
               transition={{ delay: 0.7 }}
               className="mt-10 flex flex-wrap gap-4"
             >
-              <button className="group flex items-center gap-3 rounded-xl bg-accent px-7 py-4 font-semibold text-black transition hover:bg-accent-hover">
-                <Play size={18} />
+              <button
+                onClick={() =>
+                  document
+                    .getElementById("simulation")
+                    ?.scrollIntoView({ behavior: "smooth" })
+                }
+                className="inline-flex items-center gap-3 rounded-xl bg-accent px-7 py-4 font-semibold text-black transition hover:bg-accent-hover hover:scale-105"
+              >
                 Run Live Simulation
-                <ArrowRight
-                  size={18}
-                  className="transition group-hover:translate-x-1"
-                />
-              </button>
-
-              <button className="flex items-center gap-3 rounded-xl border border-border bg-surface-card px-7 py-4 font-semibold text-white transition hover:border-accent hover:text-accent">
-                <Github size={18} />
-                View Source
               </button>
             </motion.div>
 
