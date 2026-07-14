@@ -1,11 +1,17 @@
 import Header from "./components/Header";
 import Hero from "./components/Hero";
+import EngineeringIdentity from "./components/EngineeringIdentity";
+
 import Skills from "./components/Skills";
-import ProjectGrid from "./components/ProjectGrid";
+import Project from "./components/Project";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
-import { personalProjects, freelanceProjects } from "./data/projects";
+import CheckoutHero from "./components/checkout/CheckoutHero";
+import ArchitectureDiagram from "./components/checkout/ArchitectureDiagram";
+import Timeline from "./components/checkout/Timeline";
+import EngineeringChallenges from "./components/EngineeringChallenges";
+import Experience from "./components/Experience";
 
 export default function App() {
   return (
@@ -13,26 +19,24 @@ export default function App() {
       <Header />
 
       <main>
+        {/* Hero Section */}
         <Hero />
 
+        {/* Engineering Identity */}
+        <EngineeringIdentity />
+
+        {/* Production Checkout System Showcase */}
+        <CheckoutHero />
+        <ArchitectureDiagram />
+        <Timeline />
+        <EngineeringChallenges />
+
+        {/* Skills */}
         <Skills />
+        <Project />
+        <Experience />
 
-        <ProjectGrid
-          id="projects"
-          label="Portfolio"
-          title="Selected Projects"
-          description="A collection of full-stack applications, dashboards, and modern web experiences."
-          projects={personalProjects}
-        />
-
-        <ProjectGrid
-          id="freelance"
-          label="Freelance"
-          title="Client & Volunteer Work"
-          description="Websites designed and developed for real businesses using modern design workflows and AI-assisted development."
-          projects={freelanceProjects}
-        />
-
+        {/* Contact */}
         <Contact />
       </main>
 
