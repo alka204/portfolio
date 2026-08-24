@@ -33,6 +33,17 @@ export const personalProjects: Project[] = [
     type: "live",
   },
   {
+    title: "TalentAI",
+    description:
+      "An AI-powered talent management platform that helps streamline recruitment, candidate evaluation, and talent discovery through a modern full-stack web application.",
+    tags: ["React", "Node.js", "AI", "REST API", "Full Stack"],
+    link: "talent-ai-zoom3.vercel.app",
+    linkLabel: "Visit Frontend",
+    secondaryLink: "https://talentai-mv03.onrender.com",
+    secondaryLinkLabel: "View Backend",
+    type: "live",
+  },
+  {
     title: "Ride-Connect",
     description:
       "A carpooling web app using React and Firebase, enabling users to share rides efficiently with real-time coordination.",
@@ -65,16 +76,6 @@ export const personalProjects: Project[] = [
       "A full-stack web app to create, view, update, and delete tasks with a responsive UI and persistent database storage.",
     tags: ["Express", "MongoDB", "REST API"],
     link: "https://github.com/alka204/Task-manager",
-    linkLabel: "View on GitHub",
-    type: "github",
-  },
-
-  {
-    title: "Skin App",
-    description:
-      "A web application that provides skincare product recommendations and tips based on user preferences with a responsive interface.",
-    tags: ["React", "UI/UX", "Responsive"],
-    link: "https://github.com/alka204/skin_app",
     linkLabel: "View on GitHub",
     type: "github",
   },
