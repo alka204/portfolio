@@ -37,9 +37,9 @@ export const personalProjects: Project[] = [
     description:
       "An AI-powered talent management platform that helps streamline recruitment, candidate evaluation, and talent discovery through a modern full-stack web application.",
     tags: ["React", "Node.js", "AI", "REST API", "Full Stack"],
-    link: "talent-ai-zoom3.vercel.app",
+    link: "https://talent-ai-zoom3.vercel.app/",
     linkLabel: "Visit Frontend",
-    secondaryLink: "https://talentai-mv03.onrender.com",
+    secondaryLink: "https://talentai-mv03.onrender.com/",
     secondaryLinkLabel: "View Backend",
     type: "live",
   },
