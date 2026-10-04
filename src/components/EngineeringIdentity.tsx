@@ -14,7 +14,7 @@ const techStack = [
 
 export default function EngineeringIdentity() {
   return (
-    <section className="border-t border-border bg-surface py-24">
+    <section className="border-t border-border bg-surface py-16 sm:py-24">
       <div className="section-container">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -23,16 +23,16 @@ export default function EngineeringIdentity() {
           transition={{ duration: 0.7 }}
           className="mx-auto max-w-5xl"
         >
-          <h2 className="text-center text-4xl font-black leading-tight text-white md:text-6xl">
+          <h2 className="text-center text-2xl font-black leading-tight text-white sm:text-4xl md:text-6xl">
             I design scalable{" "}
             <span className="text-accent">backend systems</span>,
-            <br />
+            <br className="hidden sm:inline" />{" "}
             APIs, databases and
-            <br />
+            <br className="hidden sm:inline" />{" "}
             cloud solutions.
           </h2>
 
-          <p className="mx-auto mt-8 max-w-3xl text-center text-lg leading-8 text-muted">
+          <p className="mx-auto mt-6 max-w-3xl text-center text-base text-muted sm:mt-8 sm:text-lg sm:leading-8">
             Building secure, production-ready applications with modern backend
             architecture, scalable APIs, cloud infrastructure, and performant
             user experiences.
@@ -43,12 +43,12 @@ export default function EngineeringIdentity() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
-            className="mt-14 flex flex-wrap justify-center gap-4"
+            className="mt-10 flex flex-wrap justify-center gap-2.5 sm:mt-14 sm:gap-4"
           >
             {techStack.map((tech) => (
               <span
                 key={tech}
-                className="rounded-full border border-border bg-surface-card px-5 py-2 text-sm font-medium text-white transition-all duration-300 hover:border-accent hover:text-accent hover:shadow-[0_0_20px_rgba(0,188,212,0.2)]"
+                className="rounded-full border border-border bg-surface-card px-3.5 py-1.5 text-xs font-medium text-white transition-all duration-300 hover:border-accent hover:text-accent hover:shadow-[0_0_20px_rgba(0,188,212,0.2)] sm:px-5 sm:py-2 sm:text-sm"
               >
                 {tech}
               </span>

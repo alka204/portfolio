@@ -29,7 +29,7 @@ const challenges = [
 
 export default function EngineeringChallenges() {
   return (
-    <section className="border-t border-border bg-surface py-24">
+    <section className="border-t border-border bg-surface py-16 sm:py-24">
       <div className="section-container">
         <motion.div
           initial={{ opacity: 0, y: 25 }}
@@ -40,17 +40,17 @@ export default function EngineeringChallenges() {
         >
           <p className="section-label">Engineering Decisions</p>
 
-          <h2 className="mt-4 text-4xl font-bold text-white sm:text-5xl">
+          <h2 className="mt-4 text-2xl font-bold text-white sm:text-4xl md:text-5xl">
             Engineering Challenges
           </h2>
 
-          <p className="mt-6 text-lg leading-8 text-muted">
+          <p className="mt-4 text-base leading-7 text-muted sm:mt-6 sm:text-lg sm:leading-8">
             Real engineering problems solved while designing a production-ready
             ecommerce checkout architecture.
           </p>
         </motion.div>
 
-        <div className="mt-20 space-y-8">
+        <div className="mt-12 space-y-6 sm:mt-20 sm:space-y-8">
           {challenges.map((item, index) => (
             <motion.div
               key={item.number}
@@ -64,10 +64,10 @@ export default function EngineeringChallenges() {
               whileHover={{
                 y: -6,
               }}
-              className="glass-card p-8 transition-all duration-300 hover:border-accent/40"
+              className="glass-card p-5 transition-all duration-300 hover:border-accent/40 sm:p-8"
             >
-              <div className="flex flex-col gap-8 md:flex-row md:items-start">
-                <div className="text-6xl font-black text-accent/25">
+              <div className="flex flex-col gap-4 sm:gap-8 md:flex-row md:items-start">
+                <div className="text-4xl font-black text-accent/30 sm:text-6xl">
                   {item.number}
                 </div>
 
@@ -77,17 +77,17 @@ export default function EngineeringChallenges() {
                       Problem
                     </p>
 
-                    <h3 className="mt-3 text-2xl font-semibold text-white">
+                    <h3 className="mt-2 text-lg font-semibold text-white sm:mt-3 sm:text-2xl">
                       {item.problem}
                     </h3>
                   </div>
 
-                  <div className="mt-8 border-l-2 border-accent pl-6">
+                  <div className="mt-4 border-l-2 border-accent pl-4 sm:mt-8 sm:pl-6">
                     <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
                       Solution
                     </p>
 
-                    <p className="mt-3 leading-8 text-muted">{item.solution}</p>
+                    <p className="mt-2 text-sm leading-6 text-muted sm:mt-3 sm:text-base sm:leading-8">{item.solution}</p>
                   </div>
                 </div>
               </div>

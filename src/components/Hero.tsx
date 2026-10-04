@@ -1,7 +1,10 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 
-const name = "Alka Kumari";
+const words = [
+  { text: "Alka", startIndex: 0 },
+  { text: "Kumari", startIndex: 5 },
+];
 
 export default function Hero() {
   const lettersRef = useRef<(HTMLSpanElement | null)[]>([]);
@@ -60,12 +63,13 @@ export default function Hero() {
       <style>{`
         .hero{
           min-height:100vh;
+          min-height:100dvh;
           display:flex;
           justify-content:center;
           align-items:center;
           background:#000;
           overflow:hidden;
-          padding:0 2rem;
+          padding:5rem 1.5rem 2rem 1.5rem;
         }
 
         .wrapper{
@@ -73,18 +77,27 @@ export default function Hero() {
           display:flex;
           flex-direction:column;
           align-items:center;
+          width:100%;
+          max-width:72rem;
         }
 
         .name{
           display:flex;
+          flex-wrap:wrap;
           justify-content:center;
           align-items:center;
-          white-space:nowrap;
-          font-size:clamp(5rem,13vw,11rem);
+          gap:0.25em 0.4em;
+          font-size:clamp(2.5rem, 11vw, 10rem);
           font-weight:900;
-          line-height:1;
-          letter-spacing:-0.05em;
+          line-height:1.05;
+          letter-spacing:-0.04em;
           color:#fff;
+          text-align:center;
+        }
+
+        .word-wrapper{
+          display:inline-flex;
+          white-space:nowrap;
         }
 
         .letter-wrapper{
@@ -107,9 +120,15 @@ export default function Hero() {
             0 0 35px rgba(0,188,212,.25);
         }
 
-        .space{
-          display:inline-block;
-          width:.35em;
+        .tagline{
+          margin-top:1.75rem;
+          font-size:clamp(0.95rem, 2.8vw, 1.25rem);
+          color:#9ca3af;
+          text-align:center;
+          max-width:32rem;
+          line-height:1.6;
+          font-weight:400;
+          padding:0 1rem;
         }
 
         .shine{
@@ -128,18 +147,12 @@ export default function Hero() {
           pointer-events:none;
         }
 
-        @media(max-width:768px){
-
+        @media(max-width:640px){
           .hero{
-            padding:0 1rem;
+            padding-top:6rem;
           }
-
           .name{
-            font-size:clamp(3rem,15vw,6rem);
-          }
-
-          .space{
-            width:.28em;
+            font-size:clamp(2.25rem, 13vw, 4.5rem);
           }
         }
       `}</style>
@@ -149,24 +162,25 @@ export default function Hero() {
           <div className="shine" />
 
           <h1 className="name">
-            {name.split("").map((char, index) =>
-              char === " " ? (
-                <span key={index} className="space">
-                  &nbsp;
-                </span>
-              ) : (
-                <span key={index} className="letter-wrapper">
-                  <span
-                    ref={(el) => {
-                      lettersRef.current[index] = el;
-                    }}
-                    className="letter"
-                  >
-                    {char}
-                  </span>
-                </span>
-              ),
-            )}
+            {words.map((wordObj) => (
+              <span key={wordObj.text} className="word-wrapper">
+                {wordObj.text.split("").map((char, charIndex) => {
+                  const globalIndex = wordObj.startIndex + charIndex;
+                  return (
+                    <span key={charIndex} className="letter-wrapper">
+                      <span
+                        ref={(el) => {
+                          lettersRef.current[globalIndex] = el;
+                        }}
+                        className="letter"
+                      >
+                        {char}
+                      </span>
+                    </span>
+                  );
+                })}
+              </span>
+            ))}
           </h1>
           <p className="tagline">Everything I touch is left improved.</p>
         </div>

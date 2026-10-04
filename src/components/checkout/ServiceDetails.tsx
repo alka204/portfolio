@@ -8,7 +8,7 @@ interface Props {
 const ServiceDetails = ({ service }: Props) => {
   if (!service) {
     return (
-      <div className="p-6 text-gray-400 text-center">
+      <div className="p-6 text-center text-muted">
         Select a service to view details
       </div>
     );
@@ -19,54 +19,62 @@ const ServiceDetails = ({ service }: Props) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
-      className="bg-white rounded-xl border border-gray-200 p-6 shadow-sm"
+      className="glass-card p-5 sm:p-8"
     >
       {/* Header */}
-      <div className="mb-6">
-        <h2 className="text-2xl font-bold text-gray-900">{service.title}</h2>
+      <div className="mb-6 border-b border-border pb-6">
+        <h2 className="text-xl font-bold text-white sm:text-2xl">{service.title}</h2>
 
-        <p className="mt-2 text-gray-600 leading-relaxed">{service.purpose}</p>
+        <p className="mt-2 text-sm leading-relaxed text-muted sm:text-base">{service.purpose}</p>
       </div>
 
-      {/* Features */}
-      <section className="mb-6">
-        <h3 className="font-semibold text-gray-900 mb-3">FEATURES</h3>
+      <div className="grid gap-6 sm:grid-cols-2">
+        {/* Features */}
+        <section>
+          <h3 className="mb-3 font-mono text-xs font-semibold uppercase tracking-wider text-accent">
+            FEATURES
+          </h3>
 
-        <ul className="space-y-2">
-          {service.features.map((feature) => (
-            <li key={feature} className="flex items-center gap-2 text-gray-700">
-              <span className="text-green-500">✓</span>
-              {feature}
-            </li>
-          ))}
-        </ul>
-      </section>
+          <ul className="space-y-2">
+            {service.features.map((feature) => (
+              <li key={feature} className="flex items-start gap-2 text-xs text-white/90 sm:text-sm">
+                <span className="mt-0.5 text-accent">✓</span>
+                <span>{feature}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
 
-      {/* Tech Stack */}
-      <section className="mb-6">
-        <h3 className="font-semibold text-gray-900 mb-3">TECH STACK</h3>
+        {/* Tech Stack */}
+        <section>
+          <h3 className="mb-3 font-mono text-xs font-semibold uppercase tracking-wider text-accent">
+            TECH STACK
+          </h3>
 
-        <div className="flex flex-wrap gap-2">
-          {service.techStack.map((tech) => (
-            <span
-              key={tech}
-              className="px-3 py-1 bg-gray-100 rounded-full text-sm text-gray-700"
-            >
-              {tech}
-            </span>
-          ))}
-        </div>
-      </section>
+          <div className="flex flex-wrap gap-2">
+            {service.techStack.map((tech) => (
+              <span
+                key={tech}
+                className="rounded-full border border-border bg-surface-raised px-3 py-1 font-mono text-xs text-white"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+        </section>
+      </div>
 
       {/* API Endpoints */}
-      <section className="mb-6">
-        <h3 className="font-semibold text-gray-900 mb-3">API ENDPOINTS</h3>
+      <section className="mt-6">
+        <h3 className="mb-3 font-mono text-xs font-semibold uppercase tracking-wider text-accent">
+          API ENDPOINTS
+        </h3>
 
         <div className="space-y-2">
           {service.endpoints.map((endpoint) => (
             <div
               key={endpoint}
-              className="font-mono text-sm bg-gray-50 p-2 rounded"
+              className="break-all font-mono text-xs text-accent bg-surface-raised/90 border border-border p-2.5 rounded-lg"
             >
               {endpoint}
             </div>
@@ -75,12 +83,14 @@ const ServiceDetails = ({ service }: Props) => {
       </section>
 
       {/* Security */}
-      <section className="mb-6">
-        <h3 className="font-semibold text-gray-900 mb-3">SECURITY</h3>
+      <section className="mt-6">
+        <h3 className="mb-3 font-mono text-xs font-semibold uppercase tracking-wider text-accent">
+          SECURITY
+        </h3>
 
         <ul className="space-y-2">
           {service.security.map((item) => (
-            <li key={item} className="text-gray-700">
+            <li key={item} className="text-xs text-muted sm:text-sm">
               • {item}
             </li>
           ))}
@@ -88,23 +98,25 @@ const ServiceDetails = ({ service }: Props) => {
       </section>
 
       {/* Performance */}
-      <section>
-        <h3 className="font-semibold text-gray-900 mb-3">PERFORMANCE</h3>
+      <section className="mt-6">
+        <h3 className="mb-3 font-mono text-xs font-semibold uppercase tracking-wider text-accent">
+          PERFORMANCE
+        </h3>
 
-        <div className="grid grid-cols-3 gap-4">
-          <div className="bg-gray-50 rounded-lg p-3 text-center">
-            <p className="text-sm text-gray-500">Latency</p>
-            <p className="font-bold">{service.performance.latency}</p>
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4">
+          <div className="rounded-xl border border-border bg-surface-raised p-3 text-center">
+            <p className="text-xs text-muted">Latency</p>
+            <p className="mt-1 font-bold text-white sm:text-lg">{service.performance.latency}</p>
           </div>
 
-          <div className="bg-gray-50 rounded-lg p-3 text-center">
-            <p className="text-sm text-gray-500">Availability</p>
-            <p className="font-bold">{service.performance.availability}</p>
+          <div className="rounded-xl border border-border bg-surface-raised p-3 text-center">
+            <p className="text-xs text-muted">Availability</p>
+            <p className="mt-1 font-bold text-emerald-400 sm:text-lg">{service.performance.availability}</p>
           </div>
 
-          <div className="bg-gray-50 rounded-lg p-3 text-center">
-            <p className="text-sm text-gray-500">Throughput</p>
-            <p className="font-bold">{service.performance.throughput}</p>
+          <div className="rounded-xl border border-border bg-surface-raised p-3 text-center">
+            <p className="text-xs text-muted">Throughput</p>
+            <p className="mt-1 font-bold text-accent sm:text-lg">{service.performance.throughput}</p>
           </div>
         </div>
       </section>

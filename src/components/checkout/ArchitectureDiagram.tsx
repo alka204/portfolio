@@ -144,9 +144,9 @@ const ArchitectureDiagram = () => {
   return (
     <section
       id="simulation"
-      className="border-t border-border bg-surface py-24"
+      className="border-t border-border bg-surface py-16 sm:py-24"
     >
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -154,15 +154,15 @@ const ArchitectureDiagram = () => {
           transition={{ duration: 0.6 }}
           className="text-center"
         >
-          <span className="inline-flex rounded-full border border-border bg-surface-card px-4 py-2 text-sm font-semibold text-accent">
+          <span className="inline-flex rounded-full border border-border bg-surface-card px-3.5 py-1.5 text-xs font-semibold text-accent sm:px-4 sm:py-2 sm:text-sm">
             Interactive Architecture
           </span>
 
-          <h2 className="mt-6 text-4xl font-black text-white md:text-5xl">
+          <h2 className="mt-4 text-2xl font-black text-white sm:mt-6 sm:text-4xl md:text-5xl">
             Production Checkout Flow
           </h2>
 
-          <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-muted">
+          <p className="mx-auto mt-4 max-w-3xl text-sm leading-7 text-muted sm:mt-6 sm:text-lg sm:leading-8">
             Watch how a production ecommerce checkout request moves through
             multiple backend services before completing an order.
           </p>
@@ -170,14 +170,13 @@ const ArchitectureDiagram = () => {
           <button
             onClick={runSimulation}
             disabled={running}
-            className="mt-10 inline-flex items-center gap-3 rounded-xl bg-accent px-7 py-4 font-semibold text-black transition hover:bg-accent-hover disabled:opacity-50"
+            className="mt-8 inline-flex items-center gap-3 rounded-xl bg-accent px-6 py-3.5 text-sm font-semibold text-black transition hover:bg-accent-hover disabled:opacity-50 sm:mt-10 sm:px-7 sm:py-4 sm:text-base"
           >
             <Play size={18} />
 
             {running ? "Simulation Running..." : "Run Simulation"}
           </button>
         </motion.div>
-        {/* Header */}
 
         {/* Information Panel */}
 
@@ -194,14 +193,14 @@ const ArchitectureDiagram = () => {
           transition={{
             duration: 0.4,
           }}
-          className="mx-auto mt-20 max-w-5xl"
+          className="mx-auto mt-10 max-w-5xl sm:mt-16"
         >
           <ServiceDetails service={selectedDetails} />
         </motion.div>
 
         {/* Architecture */}
 
-        <div className="mt-20 flex flex-col items-center">
+        <div className="mt-12 flex flex-col items-center sm:mt-16">
           <ServiceNode
             {...serviceMap.user}
             active={activeNode === "user"}
@@ -220,7 +219,7 @@ const ArchitectureDiagram = () => {
 
           {/* Three parallel services */}
 
-          <div className="mt-10 grid w-full max-w-5xl gap-8 md:grid-cols-3">
+          <div className="mt-6 grid w-full max-w-5xl justify-items-center gap-4 sm:mt-10 sm:gap-6 md:grid-cols-3">
             <ServiceNode
               {...serviceMap.cart}
               active={activeNode === "cart"}
@@ -239,7 +238,7 @@ const ArchitectureDiagram = () => {
               onClick={() => setSelected(serviceMap.inventory)}
             />
           </div>
-          <div className="my-8 flex justify-center">
+          <div className="my-6 flex justify-center sm:my-8">
             <ConnectionLine active={activeNode === "order"} />
           </div>
 
@@ -249,7 +248,7 @@ const ArchitectureDiagram = () => {
             onClick={() => setSelected(serviceMap.order)}
           />
 
-          <div className="my-8 flex justify-center">
+          <div className="my-6 flex justify-center sm:my-8">
             <ConnectionLine active={activeNode === "database"} />
           </div>
 
@@ -259,7 +258,7 @@ const ArchitectureDiagram = () => {
             onClick={() => setSelected(serviceMap.database)}
           />
 
-          <div className="my-8 flex justify-center">
+          <div className="my-6 flex justify-center sm:my-8">
             <ConnectionLine active={activeNode === "events"} />
           </div>
 

@@ -20,37 +20,41 @@ const ServiceNode = ({
 }: ServiceNodeProps) => {
   return (
     <motion.div
-      whileHover={{ scale: 1.05, y: -5 }}
+      whileHover={{ scale: 1.03, y: -4 }}
       whileTap={{ scale: 0.98 }}
       animate={
         active
           ? {
-              scale: [1, 1.06, 1],
+              scale: [1, 1.04, 1],
               boxShadow: [
-                "0px 0px 0px rgba(59,130,246,0)",
-                "0px 0px 35px rgba(59,130,246,.35)",
-                "0px 0px 0px rgba(59,130,246,0)",
+                "0px 0px 0px rgba(0,188,212,0)",
+                "0px 0px 30px rgba(0,188,212,.35)",
+                "0px 0px 0px rgba(0,188,212,0)",
               ],
             }
           : {}
       }
       transition={{
-        duration: 1,
+        duration: 1.2,
         repeat: active ? Infinity : 0,
       }}
       onClick={onClick}
-      className="cursor-pointer rounded-2xl border border-gray-200 bg-white p-5 shadow-md"
+      className={`w-full max-w-sm cursor-pointer rounded-2xl border p-4 shadow-lg backdrop-blur-md transition-all duration-300 sm:p-5 ${
+        active
+          ? "border-accent bg-accent/15 text-white"
+          : "border-border bg-surface-card hover:border-accent/40 hover:bg-surface-raised"
+      }`}
     >
       <div
-        className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl"
+        className="mb-3 flex h-12 w-12 items-center justify-center rounded-xl sm:mb-4 sm:h-14 sm:w-14"
         style={{ backgroundColor: color }}
       >
-        <Icon size={28} className="text-white" />
+        <Icon size={24} className="text-black sm:h-7 sm:w-7" />
       </div>
 
-      <h3 className="text-lg font-bold text-gray-900">{title}</h3>
+      <h3 className="text-base font-bold text-white sm:text-lg">{title}</h3>
 
-      {subtitle && <p className="mt-2 text-sm text-gray-500">{subtitle}</p>}
+      {subtitle && <p className="mt-1 text-xs text-muted sm:mt-2 sm:text-sm">{subtitle}</p>}
     </motion.div>
   );
 };

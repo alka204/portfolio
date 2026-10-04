@@ -52,9 +52,13 @@ export default function Header() {
       <div className="section-container flex h-16 items-center justify-between sm:h-18">
         <a
           href="#home"
-          className="text-lg font-semibold tracking-wide text-white transition-colors hover:text-accent"
+          className="group flex items-center gap-1.5 text-lg font-bold tracking-wider text-white transition-colors hover:text-accent"
           onClick={() => handleNavClick("#home")}
-        ></a>
+        >
+          <span className="font-mono text-accent">&lt;</span>
+          <span>Alka Kumari</span>
+          <span className="font-mono text-accent">/&gt;</span>
+        </a>
 
         <nav className="hidden items-center gap-8 md:flex">
           {navLinks.map((link) => {
@@ -99,7 +103,7 @@ export default function Header() {
       </div>
 
       {menuOpen && (
-        <div className="border-t border-border bg-surface/95 backdrop-blur-md md:hidden">
+        <div className="border-t border-border bg-surface/98 backdrop-blur-xl md:hidden">
           <nav className="section-container flex flex-col gap-1 py-4">
             {navLinks.map((link) => {
               const id = link.href.replace("#", "");

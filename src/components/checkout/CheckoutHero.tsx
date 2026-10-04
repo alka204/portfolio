@@ -30,14 +30,14 @@ const features = [
 
 const CheckoutHero = () => {
   return (
-    <section className="relative overflow-hidden border-t border-border bg-surface py-28">
+    <section className="relative overflow-hidden border-t border-border bg-surface py-16 sm:py-24 lg:py-28">
       {/* Background Blur */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute left-1/2 top-0 h-112.5 w-112.5 -translate-x-1/2 rounded-full bg-accent/10 blur-[140px]" />
+        <div className="absolute left-1/2 top-0 h-96 w-96 -translate-x-1/2 rounded-full bg-accent/10 blur-[140px] sm:h-112.5 sm:w-112.5" />
       </div>
 
-      <div className="mx-auto max-w-7xl px-6">
-        <div className="grid items-center gap-20 lg:grid-cols-2">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-20">
           {/* LEFT */}
 
           <motion.div
@@ -51,7 +51,7 @@ const CheckoutHero = () => {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="inline-flex rounded-full border border-border bg-surface-card px-4 py-2 text-sm font-semibold text-accent"
+              className="inline-flex rounded-full border border-border bg-surface-card px-3.5 py-1.5 text-xs font-semibold text-accent sm:px-4 sm:py-2 sm:text-sm"
             >
               Full Stack Backend Engineering Showcase
             </motion.span>
@@ -61,10 +61,10 @@ const CheckoutHero = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
-              className="mt-8 text-5xl font-black leading-tight text-white lg:text-7xl"
+              className="mt-6 text-3xl font-black leading-tight text-white sm:text-5xl lg:text-7xl"
             >
-              Production
-              <br />
+              Production{" "}
+              <br className="hidden sm:inline" />
               Checkout
               <span className="text-accent"> System</span>
             </motion.h1>
@@ -74,7 +74,7 @@ const CheckoutHero = () => {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.5 }}
-              className="mt-8 max-w-xl text-lg leading-8 text-muted"
+              className="mt-6 max-w-xl text-base leading-7 text-muted sm:mt-8 sm:text-lg sm:leading-8"
             >
               An interactive engineering showcase demonstrating how a modern
               ecommerce checkout system is built using scalable backend
@@ -89,7 +89,7 @@ const CheckoutHero = () => {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.7 }}
-              className="mt-10 flex flex-wrap gap-4"
+              className="mt-8 flex flex-wrap gap-4 sm:mt-10"
             >
               <button
                 onClick={() =>
@@ -97,7 +97,7 @@ const CheckoutHero = () => {
                     .getElementById("simulation")
                     ?.scrollIntoView({ behavior: "smooth" })
                 }
-                className="inline-flex items-center gap-3 rounded-xl bg-accent px-7 py-4 font-semibold text-black transition hover:bg-accent-hover hover:scale-105"
+                className="w-full justify-center inline-flex items-center gap-3 rounded-xl bg-accent px-7 py-4 font-semibold text-black transition hover:bg-accent-hover hover:scale-105 sm:w-auto"
               >
                 Run Live Simulation
               </button>
@@ -110,21 +110,21 @@ const CheckoutHero = () => {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 1 }}
-              className="mt-16 grid grid-cols-3 gap-8"
+              className="mt-12 grid grid-cols-3 gap-3 text-center sm:mt-16 sm:gap-8 sm:text-left"
             >
               <div>
-                <h2 className="text-3xl font-black text-white">7+</h2>
-                <p className="mt-2 text-sm text-muted">Backend Services</p>
+                <h2 className="text-2xl font-black text-white sm:text-3xl">7+</h2>
+                <p className="mt-1 text-xs text-muted sm:mt-2 sm:text-sm">Backend Services</p>
               </div>
 
               <div>
-                <h2 className="text-3xl font-black text-white">12</h2>
-                <p className="mt-2 text-sm text-muted">REST APIs</p>
+                <h2 className="text-2xl font-black text-white sm:text-3xl">12</h2>
+                <p className="mt-1 text-xs text-muted sm:mt-2 sm:text-sm">REST APIs</p>
               </div>
 
               <div>
-                <h2 className="text-3xl font-black text-white">99.9%</h2>
-                <p className="mt-2 text-sm text-muted">Availability</p>
+                <h2 className="text-2xl font-black text-white sm:text-3xl">99.9%</h2>
+                <p className="mt-1 text-xs text-muted sm:mt-2 sm:text-sm">Availability</p>
               </div>
             </motion.div>
           </motion.div>
@@ -137,12 +137,12 @@ const CheckoutHero = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <div className="rounded-3xl border border-border bg-surface-card p-8 backdrop-blur-md shadow-[0_20px_50px_rgba(0,188,212,0.08)]">
-              <h3 className="mb-8 text-xl font-bold text-white">
+            <div className="rounded-3xl border border-border bg-surface-card p-5 backdrop-blur-md shadow-[0_20px_50px_rgba(0,188,212,0.08)] sm:p-8">
+              <h3 className="mb-6 text-lg font-bold text-white sm:mb-8 sm:text-xl">
                 Engineering Highlights
               </h3>
 
-              <div className="grid gap-5">
+              <div className="grid gap-4 sm:gap-5">
                 {features.map((feature, index) => {
                   const Icon = feature.icon;
 
@@ -157,18 +157,18 @@ const CheckoutHero = () => {
                         y: -5,
                         scale: 1.02,
                       }}
-                      className="flex items-center gap-5 rounded-2xl border border-border bg-surface-raised p-5 transition"
+                      className="flex items-center gap-4 rounded-2xl border border-border bg-surface-raised p-4 transition sm:gap-5 sm:p-5"
                     >
-                      <div className="rounded-xl bg-accent/10 p-3 text-accent">
-                        <Icon size={28} />
+                      <div className="rounded-xl bg-accent/10 p-2.5 text-accent sm:p-3">
+                        <Icon size={24} className="sm:h-7 sm:w-7" />
                       </div>
 
                       <div>
-                        <h4 className="font-semibold text-white">
+                        <h4 className="text-sm font-semibold text-white sm:text-base">
                           {feature.title}
                         </h4>
 
-                        <p className="mt-1 text-sm text-muted">
+                        <p className="mt-0.5 text-xs text-muted sm:mt-1 sm:text-sm">
                           Production-grade implementation
                         </p>
                       </div>
@@ -184,17 +184,17 @@ const CheckoutHero = () => {
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 1.1 }}
-                className="mt-8 rounded-2xl bg-accent p-6 text-black"
+                className="mt-6 rounded-2xl bg-accent p-5 text-black sm:mt-8 sm:p-6"
               >
-                <p className="text-sm uppercase tracking-wider opacity-70">
+                <p className="text-xs uppercase tracking-wider opacity-80 sm:text-sm">
                   Case Study
                 </p>
 
-                <h3 className="mt-2 text-2xl font-bold">
+                <h3 className="mt-1.5 text-xl font-bold sm:mt-2 sm:text-2xl">
                   End-to-End Checkout Flow
                 </h3>
 
-                <p className="mt-3 text-black/70">
+                <p className="mt-2 text-xs leading-relaxed text-black/80 sm:mt-3 sm:text-sm">
                   From API Gateway to Payment Processing, Database Transactions,
                   Event Queue, Notifications, and Cloud Deployment.
                 </p>

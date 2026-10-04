@@ -77,9 +77,9 @@ export default function Contact() {
     }`
 
   return (
-    <section id="contact" className="section-pad border-t border-border bg-surface-raised/30">
+    <section id="contact" className="border-t border-border bg-surface-raised/30 py-16 sm:py-24">
       <div className="section-container">
-        <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
+        <div className="grid gap-8 sm:gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -88,16 +88,16 @@ export default function Contact() {
           >
             <p className="section-label">Contact</p>
             <h2 className="section-title mt-3">Let&apos;s Work Together</h2>
-            <p className="mt-4 max-w-md text-muted">
+            <p className="mt-4 max-w-md text-sm text-muted sm:text-base">
               Have a project in mind or want to collaborate? Send me a message —
               I&apos;ll get back to you and you&apos;ll receive a confirmation
               email once it&apos;s sent.
             </p>
 
-            <div className="mt-8 space-y-4">
+            <div className="mt-6 space-y-3 sm:mt-8 sm:space-y-4">
               <a
                 href="mailto:alka.kumari3289@gmail.com"
-                className="block text-sm text-muted transition-colors hover:text-accent"
+                className="block text-sm text-muted transition-colors hover:text-accent sm:text-base"
               >
                 alka.kumari3289@gmail.com
               </a>
@@ -131,11 +131,11 @@ export default function Contact() {
             <form
               onSubmit={handleSubmit}
               noValidate
-              className="glass-card space-y-5 p-6 sm:p-8"
+              className="glass-card space-y-4 p-5 sm:space-y-5 sm:p-8"
             >
-              <div className="grid gap-5 sm:grid-cols-2">
+              <div className="grid gap-4 sm:grid-cols-2 sm:gap-5">
                 <div>
-                  <label htmlFor="name" className="mb-1.5 block text-sm text-muted">
+                  <label htmlFor="name" className="mb-1.5 block text-xs font-medium text-muted sm:text-sm">
                     Name <span className="text-accent">*</span>
                   </label>
                   <input
@@ -154,7 +154,7 @@ export default function Contact() {
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="mb-1.5 block text-sm text-muted">
+                  <label htmlFor="email" className="mb-1.5 block text-xs font-medium text-muted sm:text-sm">
                     Email <span className="text-accent">*</span>
                   </label>
                   <input
@@ -174,7 +174,7 @@ export default function Contact() {
               </div>
 
               <div>
-                <label htmlFor="subject" className="mb-1.5 block text-sm text-muted">
+                <label htmlFor="subject" className="mb-1.5 block text-xs font-medium text-muted sm:text-sm">
                   Subject <span className="text-accent">*</span>
                 </label>
                 <input
@@ -192,7 +192,7 @@ export default function Contact() {
               </div>
 
               <div>
-                <label htmlFor="message" className="mb-1.5 block text-sm text-muted">
+                <label htmlFor="message" className="mb-1.5 block text-xs font-medium text-muted sm:text-sm">
                   Message <span className="text-accent">*</span>
                 </label>
                 <textarea
@@ -201,7 +201,7 @@ export default function Contact() {
                   onChange={(e) => handleChange('message', e.target.value)}
                   onBlur={() => handleBlur('message')}
                   placeholder="Tell me about your project..."
-                  rows={5}
+                  rows={4}
                   className={`${inputClass('message')} resize-none`}
                 />
                 {errors.message && touched.message && (
